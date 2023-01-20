@@ -1,10 +1,15 @@
-#include <string>
+//#include <string>
 #include <iostream>
-#include <vector>
-#include <algorithm>
+//#include <vector>
+//#include <algorithm>
 
+/*
 struct ToUpper {
         char operator()(char c) { return toupper(c); }
+};
+*/
+struct ToUpper {
+    void operator()(char& c) { c= std::toupper((unsigned char)c);}
 };
 
 struct ToString {
@@ -22,6 +27,15 @@ int main(int argc, char **argv) {
 		std::cout << std::endl;
         return (0);
     }
+
+    std::string str;
+    for (int i = 1; i < argc; i++)
+    {
+        str = argv[i];
+        for_each(str.begin(), str.end(), ToUpper());
+        std::cout << str;
+        //str = argc[i];
+    }
 	/*
     for (int i = 1; i < argc; i++)
     {
@@ -37,9 +51,9 @@ int main(int argc, char **argv) {
         //std::string str(argv[i]);
 
 
-    /*
 
-    std::string last = std::string(argv[argc - 1]);
+    //std::string last = std::string(argv[argc - 1]);
+    /*
     std::transform(
                 argv[1],
                 &(argv[argc - 1][strlen(argv[argc - 1])]),
@@ -53,43 +67,6 @@ int main(int argc, char **argv) {
     std::cout << std::endl;
     */
 
-    std::string src =argv[1];
-
-    std::string dst = src;
-
-
-
-    std::transform(src.begin(), src.end(), dst.begin(), toupper);
-    std::cout << dst;
-
-
-
-
-        std::vector<int> vec;
-
-            vec.push_back(3); vec.push_back(2); vec.push_back(6);
-
-                vec.push_back(4); vec.push_back(1); vec.push_back(5);
-
-
-
-                    std::sort(vec.begin(), vec.end());   // ソート
-                                                         //
-                                                         //
-                                                         //
-                                                         //     for (std::vector<int>::iterator it = vec.begin();
-                                                         //
-                                                         //             it != vec.end(); ++it)
-                                                         //
-                                                         //                     std::cout << *it << std::endl;  // 出力: 1, 2, 3, 4, 5, 6
-                                                         //
-                                                         //
-                                                         //
-                                                         //                         return 0;
-
-
-
-
-
+    std::cout << std::endl;
     return (0);
 }
