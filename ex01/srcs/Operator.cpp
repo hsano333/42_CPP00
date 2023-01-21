@@ -9,6 +9,16 @@ using std::cout;
 using std::string;
 using std::endl;
 
+Operator::Operator()
+{
+    PhoneBook phone_book;
+    this->book = phone_book;
+}
+Operator::~Operator(void)
+{
+    ;
+}
+
 bool Operator::is_not_empty(const string str)
 {
     for(size_t i = 0; i < str.length(); i++)
@@ -17,11 +27,18 @@ bool Operator::is_not_empty(const string str)
     return (false);
 }
 
-string Operator::get_info(string prompt)
+bool Operator::is_only_number(const string str)
+{
+    for(size_t i = 0; i < str.length(); i++)
+        if (str[i] < '0' || str[i] > '9')
+            return (false);
+    return (true);
+}
+
+string Operator::get_info(string prompt, bool only_number)
 {
     string str;
     std::cout << prompt << ":";
-    std::cout << "test No.1\n";
     while (getline(cin, str))
     {
         if (is_not_empty(str))
@@ -29,53 +46,57 @@ string Operator::get_info(string prompt)
         cout << "Enter something. No blanks." << endl;
         cout << prompt << ":";
     }
-    std::cout << "test No.2:" << str << endl;
+    if (only_number && !is_only_number(str))
+    {
+        do
+        {
+            cout << "Enter only number." << endl;
+            cout << prompt << ":";
+            if (is_only_number(str) && is_not_empty(str))
+                break ;
+
+        } while (getline(cin, str));
+    }
     return (str);
 }
 
 void Operator::process_add(Contact *contact)
 {
-    /*
-    std::cout << "test first No.1\n";
-    std::cout << this->get_info("first name");
-    std::cout << "test first No.3\n";
-    std::cout << contact->is_empty;
-    std::cout << "test first No.4\n";
-    std::cout << contact->get_first_name();
-
-
-
-    contact->set_first_name("test");
-    //contact->set_first_name(this->get_info("first name"));
-    //std::cout << contact.get_first_name();
-    //string str("test");
-    //contact.set_first_name(str);
-    //contact.set_last_name("str");
-    */
-    contact->set_first_name(this->get_info("first name"));
-    contact->set_last_name(this->get_info("last name"));
-    contact->set_nickname(this->get_info("nickname"));
-    contact->set_phone_number(this->get_info("phone_number"));
-    contact->set_darkest_secret(this->get_info("darkest_secret"));
+    cout << "make new contact." << endl;
+    contact->set_first_name(this->get_info("first name", false));
+    contact->set_last_name(this->get_info("last name", false));
+    contact->set_nickname(this->get_info("nickname", false));
+    contact->set_phone_number(this->get_info("phone_number", true));
+    contact->set_darkest_secret(this->get_info("darkest_secret", false));
+    contact->end_input();
+	this->book.increment_id();
+    cout << "Success. New contact is added!" << endl;
 }
 
-void Operator::process_search(void)
+void Operator::process_search()
 {
     std::cout << "search process\n";
+    this->book.display_all();
 }
 
 void Operator::operate(void)
 {
     string str;
-    PhoneBook phone_book;
+    //PhoneBook phone_book;
 
+    cout << "Input command is only 'ADD', 'SEARCH', 'EXIT'" << endl;
+    cout << "PhoneBook:";
     while (getline(cin, str))
     {
         if (str == "ADD")
-            this->process_add((phone_book.give_contact()));
+            this->process_add((this->book.give_contact()));
         else if (str == "SEARCH")
             this->process_search();
         else if (str == "EXIT")
             break ;
+        else
+            cout << "Valid command is only 'ADD' , 'SEARCH' , 'EXIT'" << endl;
+        cout << "PhoneBook:";
     }
+    cout << "Exit" << endl;
 }

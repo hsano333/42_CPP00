@@ -1,12 +1,18 @@
 
-#include "PhoneBook.hpp"
+#include "../include/PhoneBook.hpp"
 #include <iostream>
+#include <iomanip>
 #include <string>
+
+using std::cout;
+using std::string;
+using std::endl;
+using std::setw;
 
 PhoneBook::PhoneBook()
 {
     for(int i=0; i<MAX_CONTACT_SIZE; i++)
-        this->contacts[i].init();
+        this->contacts[i].init(i);
     this->cur_id = 0;
     //this->p++;
     //if (this->p > MAX_CONTACT_SIZE)
@@ -37,6 +43,36 @@ void PhoneBook::search(void)
 void PhoneBook::exit(void)
 {
     std::cout << "exit\n";
+}
+
+void PhoneBook::display_all(void)
+{
+    if (cur_id == 0)
+    {
+        cout << "Book is empty!" << endl;
+        return ;
+    }
+    cout << "+--+----------+----------+----------+" << endl;
+    cout << "|id|first name| last name|  nickname|" << endl;
+    cout << "+--+----------+----------+----------+" << endl;
+    for(int i=0; i<MAX_CONTACT_SIZE; i++)
+    {
+        if (this->contacts[i].is_display())
+        {
+            Contact book = this->contacts[i];
+            cout << "|" << setw(10) << book.get_first_name();
+            cout << "|" ;
+            cout << setw(10) << book.get_last_name();
+            cout << "|" << book.get_nickname();
+            cout << "|" << endl;
+        }
+    }
+    cout << "+--+----------+----------+----------+" << std::endl;
+}
+
+void PhoneBook::increment_id(void)
+{
+	this->cur_id++;
 }
 //void &operator=(Contact p, const Contact &q)
 //{
