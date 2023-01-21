@@ -14,6 +14,7 @@ PhoneBook::PhoneBook()
     for(int i=0; i<MAX_CONTACT_SIZE; i++)
         this->contacts[i].init(i);
     this->cur_id = 0;
+    this->is_empty = true;
     //this->p++;
     //if (this->p > MAX_CONTACT_SIZE)
         //this->p = 0;
@@ -47,7 +48,7 @@ void PhoneBook::exit(void)
 
 void PhoneBook::display_all(void)
 {
-    if (cur_id == 0)
+    if (this->is_empty)
     {
         cout << "Book is empty!" << endl;
         return ;
@@ -60,19 +61,22 @@ void PhoneBook::display_all(void)
         if (this->contacts[i].is_display())
         {
             Contact book = this->contacts[i];
-            cout << "|" << setw(10) << book.get_first_name();
-            cout << "|" ;
-            cout << setw(10) << book.get_last_name();
-            cout << "|" << book.get_nickname();
+            cout << "|" << setw(2) << book.get_id();
+            cout << "|" << setw(10) << book.get_first_name(false);
+            cout << "|" << setw(10) << book.get_last_name(false);
+            cout << "|" << setw(10) << book.get_nickname(false);
             cout << "|" << endl;
         }
     }
     cout << "+--+----------+----------+----------+" << std::endl;
 }
 
-void PhoneBook::increment_id(void)
+void PhoneBook::added(void)
 {
-	this->cur_id++;
+    this->is_empty = false;
+    this->cur_id++;
+    if (this->cur_id >= MAX_CONTACT_SIZE)
+        this->cur_id = 0;
 }
 //void &operator=(Contact p, const Contact &q)
 //{

@@ -1,5 +1,6 @@
 #include "Contact.hpp"
 #include <iostream>
+#include <string>
 
 using std::string;
 
@@ -25,9 +26,11 @@ bool Contact::set_first_name(string first_name)
     return (true);
 }
 
-string Contact::get_phone_number(void)
+string Contact::get_phone_number(bool raw)
 {
-    return (this->phone_number);
+    if (raw)
+        return (this->first_name);
+    return (omit_word(this->phone_number));
 }
 
 bool Contact::set_darkest_secret(string darkest_secret)
@@ -36,15 +39,31 @@ bool Contact::set_darkest_secret(string darkest_secret)
     return (true);
 }
 
-string Contact::get_darkest_secret(void)
+string Contact::get_darkest_secret(bool raw)
 {
+    if (raw)
+        return (this->first_name);
     return (this->darkest_secret);
 }
 
-
-string Contact::get_first_name(void)
+int Contact::get_id(void)
 {
-    return (this->first_name);
+    return (this->id + 1);
+}
+
+string Contact::omit_word(string str)
+{
+    std::string rep = ".";
+    if (str.size() > DIPLAY_MAX)
+        str.replace(DIPLAY_MAX - 1, 1, rep);
+    return (str.substr(0, 10));
+}
+
+string Contact::get_first_name(bool raw)
+{
+    if (raw)
+        return (this->first_name);
+    return (omit_word(this->first_name));
 }
 
 bool Contact::set_last_name(string last_name)
@@ -53,9 +72,11 @@ bool Contact::set_last_name(string last_name)
     return (true);
 }
 
-string Contact::get_last_name(void)
+string Contact::get_last_name(bool raw)
 {
-    return (this->last_name);
+    if (raw)
+        return (this->first_name);
+    return (omit_word(this->last_name));
 }
 
 bool Contact::set_nickname(string nickname)
@@ -64,9 +85,11 @@ bool Contact::set_nickname(string nickname)
     return (true);
 }
 
-string Contact::get_nickname(void)
+string Contact::get_nickname(bool raw)
 {
-    return (this->nickname);
+    if (raw)
+        return (this->first_name);
+    return (omit_word(this->nickname));
 }
 
 bool Contact::set_phone_number(string phone_number)

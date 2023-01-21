@@ -69,7 +69,7 @@ void Operator::process_add(Contact *contact)
     contact->set_phone_number(this->get_info("phone_number", true));
     contact->set_darkest_secret(this->get_info("darkest_secret", false));
     contact->end_input();
-	this->book.increment_id();
+    this->book.added();
     cout << "Success. New contact is added!" << endl;
 }
 
