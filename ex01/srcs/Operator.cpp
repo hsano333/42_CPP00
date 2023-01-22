@@ -42,27 +42,22 @@ string Operator::get_info(string prompt, bool only_number)
     while (getline(cin, str))
     {
         if (is_not_empty(str))
-            break ;
-        cout << "Enter something. No blanks." << endl;
-        cout << prompt << ":";
-    }
-    if (only_number && !is_only_number(str))
-    {
-        do
         {
-            cout << "Enter only number." << endl;
-            cout << prompt << ":";
-            if (is_only_number(str) && is_not_empty(str))
+            if (!only_number || (only_number && is_only_number(str)))
                 break ;
-
-        } while (getline(cin, str));
+            else
+                cout << "Enter only number." << endl;
+        }
+        else
+            cout << "Enter something. No blanks." << endl;
+        cout << prompt << ":";
     }
     return (str);
 }
 
 void Operator::process_add(Contact *contact)
 {
-    cout << "make new contact." << endl;
+    cout << "making new contact." << endl;
     contact->set_first_name(this->get_info("first name", false));
     contact->set_last_name(this->get_info("last name", false));
     contact->set_nickname(this->get_info("nickname", false));
@@ -70,19 +65,34 @@ void Operator::process_add(Contact *contact)
     contact->set_darkest_secret(this->get_info("darkest_secret", false));
     contact->end_input();
     this->book.added();
-    cout << "Success. New contact is added!" << endl;
+    cout << "Success. New contact is added!" << endl << endl;
 }
 
 void Operator::process_search()
 {
-    std::cout << "search process\n";
-    this->book.display_all();
+    int id;
+    string str_id;
+
+    if (!this->book.display_all())
+        return ;
+    std::cout << "select contact:" << endl;
+    while (1)
+    {
+
+        str_id = this->get_info("contact index", true);
+        if (str_id.size() == 1)
+        {
+            id = str_id[0] - '0';
+            if (this->book.display_detail(id))
+                return ;
+        }
+        std::cout << "Error:enter only number 1 to " << this->book.get_max_valid_id() << endl;
+    }
 }
 
 void Operator::operate(void)
 {
     string str;
-    //PhoneBook phone_book;
 
     cout << "Input command is only 'ADD', 'SEARCH', 'EXIT'" << endl;
     cout << "PhoneBook:";
