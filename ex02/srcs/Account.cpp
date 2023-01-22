@@ -11,7 +11,6 @@ using std::endl;
 using std::string;
 using std::setfill;
 using std::setw;
-using std::to_string;
 
 
 int Account::_nbAccounts = 0;
@@ -26,13 +25,13 @@ string get_timestamp(void)
     struct tm *pnow = localtime(&now);
 
     ss << "[";
-    ss << setw(4) << setfill('0') << to_string(pnow->tm_year+1900);
-    ss << setw(2) << setfill('0') << to_string(pnow->tm_mon + 1);
-    ss << setw(2) << setfill('0') << to_string(pnow->tm_mday);
+    ss << setw(4) << setfill('0') << (pnow->tm_year+1900);
+    ss << setw(2) << setfill('0') << (pnow->tm_mon + 1);
+    ss << setw(2) << setfill('0') << (pnow->tm_mday);
     ss << "_";
-    ss << setw(2) << setfill('0') << to_string(pnow->tm_hour);
-    ss << setw(2) << setfill('0') << to_string(pnow->tm_min);
-    ss << setw(2) << setfill('0') << to_string(pnow->tm_sec);
+    ss << setw(2) << setfill('0') << (pnow->tm_hour);
+    ss << setw(2) << setfill('0') << (pnow->tm_min);
+    ss << setw(2) << setfill('0') << (pnow->tm_sec);
     ss << "] ";
     return (ss.str());
 }
@@ -182,13 +181,13 @@ void Account::_displayTimestamp(void)
     struct tm *pnow = localtime(&now);
 
     cout << "[";
-    cout << setw(4) << setfill('0') << to_string(pnow->tm_year+1900);
-    cout << setw(2) << setfill('0') << to_string(pnow->tm_mon + 1);
-    cout << setw(2) << setfill('0') << to_string(pnow->tm_mday);
+    cout << setw(4) << setfill('0') << (pnow->tm_year+1900);
+    cout << setw(2) << setfill('0') << (pnow->tm_mon + 1);
+    cout << setw(2) << setfill('0') << (pnow->tm_mday);
     cout << "_";
-    cout << setw(2) << setfill('0') << to_string(pnow->tm_hour);
-    cout << setw(2) << setfill('0') << to_string(pnow->tm_min);
-    cout << setw(2) << setfill('0') << to_string(pnow->tm_sec);
+    cout << setw(2) << setfill('0') << (pnow->tm_hour);
+    cout << setw(2) << setfill('0') << (pnow->tm_min);
+    cout << setw(2) << setfill('0') << (pnow->tm_sec);
     cout << "] ";
     //cout << get_timestamp();
 }
