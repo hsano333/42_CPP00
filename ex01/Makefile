@@ -1,4 +1,4 @@
-NAME 	:= exe
+NAME 	:= My_Awesome_PhoneBook
 LIB	:= ./lib/
 OBJDIR	:= ./obj
 SRCDIR	:= ./srcs/

@@ -1,4 +1,4 @@
-NAME 	:= exe
+NAME 	:= Megaphone
 LIB	:= ./lib/
 OBJDIR	:= ./obj
 SRCDIR	:= ./srcs/
