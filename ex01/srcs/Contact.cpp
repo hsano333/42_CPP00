@@ -20,7 +20,6 @@ void Contact::init(int id)
 
 bool Contact::set_first_name(string first_name)
 {
-    std::cout << "set first_name" << std::endl;
     std::cout << first_name << std::endl;
     this->first_name = first_name;
     return (true);
@@ -29,7 +28,7 @@ bool Contact::set_first_name(string first_name)
 string Contact::get_phone_number(bool raw)
 {
     if (raw)
-        return (this->first_name);
+        return (this->phone_number);
     return (omit_word(this->phone_number));
 }
 
@@ -42,7 +41,7 @@ bool Contact::set_darkest_secret(string darkest_secret)
 string Contact::get_darkest_secret(bool raw)
 {
     if (raw)
-        return (this->first_name);
+        return (this->darkest_secret);
     return (this->darkest_secret);
 }
 
@@ -75,7 +74,7 @@ bool Contact::set_last_name(string last_name)
 string Contact::get_last_name(bool raw)
 {
     if (raw)
-        return (this->first_name);
+        return (this->last_name);
     return (omit_word(this->last_name));
 }
 
@@ -88,7 +87,7 @@ bool Contact::set_nickname(string nickname)
 string Contact::get_nickname(bool raw)
 {
     if (raw)
-        return (this->first_name);
+        return (this->nickname);
     return (omit_word(this->nickname));
 }
 
