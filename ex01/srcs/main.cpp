@@ -4,5 +4,5 @@ int main(void)
 {
     Operator ope;
     ope.operate();
-    return (true);
+    return (0);
 }
