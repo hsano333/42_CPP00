@@ -1,4 +1,4 @@
-NAME 	:= exe
+NAME 	:= The_Job_Of_Your_Dreams
 LIB	:= ./lib/
 OBJDIR	:= ./obj
 SRCDIR	:= ./srcs/
