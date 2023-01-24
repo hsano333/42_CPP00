@@ -20,7 +20,6 @@ void Contact::init(int id)
 
 bool Contact::set_first_name(string first_name)
 {
-    std::cout << first_name << std::endl;
     this->first_name = first_name;
     return (true);
 }
