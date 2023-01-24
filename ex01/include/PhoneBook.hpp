@@ -14,11 +14,7 @@ class PhoneBook{
         Contact *give_contact(void);
         bool display_all(void);
         bool display_detail(int id);
-        void add(Contact contact);
-        void search();
-        void exit();
         void added(void);
-        bool is_valid_index(int id);
         int get_max_valid_id(void);
         //void &operator=(Contact p, const Contact &q);
 };

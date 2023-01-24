@@ -8,6 +8,7 @@ using std::cin;
 using std::cout;
 using std::string;
 using std::endl;
+using std::flush;
 
 Operator::Operator()
 {
@@ -38,7 +39,7 @@ bool Operator::is_only_number(const string str)
 string Operator::get_info(string prompt, bool only_number)
 {
     string str;
-    std::cout << prompt << ":";
+    std::cout << prompt << ":" << flush;
     while (getline(cin, str))
     {
         if (is_not_empty(str))
@@ -95,7 +96,7 @@ void Operator::operate(void)
     string str;
 
     cout << "Input command is only 'ADD', 'SEARCH', 'EXIT'" << endl;
-    cout << "PhoneBook:";
+    cout << "PhoneBook:" << flush;
     while (getline(cin, str))
     {
         if (str == "ADD")
@@ -106,7 +107,7 @@ void Operator::operate(void)
             break ;
         else
             cout << "Valid command is only 'ADD' , 'SEARCH' , 'EXIT'" << endl;
-        cout << "PhoneBook:";
+        cout << "PhoneBook:" << flush;
     }
     cout << "Exit" << endl;
 }

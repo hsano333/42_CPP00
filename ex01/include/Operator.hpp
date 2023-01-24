@@ -10,7 +10,6 @@ class Operator
 {
     private:
         PhoneBook book;
-        //std::string get_info();
         void process_add(Contact *contact);
         void process_search();
         bool is_not_empty(string str);

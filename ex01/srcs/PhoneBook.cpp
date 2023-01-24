@@ -28,24 +28,6 @@ Contact *PhoneBook::give_contact(void)
     return (&(this->contacts[this->cur_id]));
 }
 
-void PhoneBook::add(Contact contact)
-{
-    this->cur_id++;
-    if (this->cur_id > MAX_CONTACT_SIZE)
-        this->cur_id = 0;
-    this->contacts[this->cur_id] = contact;
-}
-
-void PhoneBook::search(void)
-{
-    std::cout << "search\n";
-}
-
-void PhoneBook::exit(void)
-{
-    std::cout << "exit\n";
-}
-
 bool PhoneBook::display_all(void)
 {
     if (this->is_empty)
@@ -94,15 +76,6 @@ void PhoneBook::added(void)
     this->cur_id++;
     if (this->cur_id >= MAX_CONTACT_SIZE)
         this->cur_id = 0;
-}
-
-bool PhoneBook::is_valid_index(int id)
-{
-    if (id >= MAX_CONTACT_SIZE || id < 0)
-        return (true);
-    if (this->contacts[id].is_display())
-        return (true);
-    return (false);
 }
 
 int PhoneBook::get_max_valid_id(void)
