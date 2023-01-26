@@ -3,6 +3,7 @@
 #include <Contact.hpp>
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using std::cin;
 using std::cout;
@@ -30,7 +31,8 @@ bool Operator::is_not_empty(const string str)
 bool Operator::is_only_number(const string str)
 {
     for(size_t i = 0; i < str.length(); i++)
-        if (str[i] < '0' || str[i] > '9')
+        if (!isdigit(str[i]))
+        //if (str[i] < '0' || str[i] > '9')
             return (false);
     return (true);
 }
