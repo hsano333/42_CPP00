@@ -15,12 +15,6 @@ PhoneBook::PhoneBook()
         this->contacts[i].init(i);
     this->cur_id = 0;
     this->is_empty = true;
-    //this->p++;
-    //if (this->p > MAX_CONTACT_SIZE)
-        //this->p = 0;
-    //if (typeid(this->contacts[this->p]) == typeid(Contact))
-        //delete (this->contacts[this->p]);
-    //this->contacts[this->p] = contact;
 }
 
 Contact *PhoneBook::give_contact(void)
@@ -65,7 +59,7 @@ bool PhoneBook::display_detail(int id)
     cout << "last name:" << book.get_last_name(true) << endl;
     cout << "nickname:" << book.get_nickname(true) << endl;
     cout << "phone number:" << book.get_phone_number(true) << endl;
-    cout << "darkest secret" << book.get_darkest_secret(true) << endl;
+    cout << "darkest secret:" << book.get_darkest_secret(true) << endl;
     cout << endl;
     return (true);
 }
@@ -89,7 +83,3 @@ int PhoneBook::get_max_valid_id(void)
     }
     return (MAX_CONTACT_SIZE);
 }
-//void &operator=(Contact p, const Contact &q)
-//{
-
-//}

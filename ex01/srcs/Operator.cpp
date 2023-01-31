@@ -24,7 +24,7 @@ Operator::~Operator(void)
 bool Operator::is_not_empty(const string str)
 {
     for(size_t i = 0; i < str.length(); i++)
-        if (str[i] > 0x20)
+        if (!isblank(str[i]))
             return (true);
     return (false);
 }
@@ -33,7 +33,6 @@ bool Operator::is_only_number(const string str)
 {
     for(size_t i = 0; i < str.length(); i++)
         if (!isdigit(str[i]))
-        //if (str[i] < '0' || str[i] > '9')
             return (false);
     return (true);
 }
@@ -44,7 +43,9 @@ string Operator::get_info(string prompt, bool only_number)
     std::cout << prompt << ":" << flush;
     while (getline(cin, str))
     {
-        if (is_not_empty(str))
+        if (str.length() >= 4096)
+            cout << "Input word is too large." << endl;
+        else if (is_not_empty(str))
         {
             if (!only_number || (only_number && is_only_number(str)))
                 break ;
